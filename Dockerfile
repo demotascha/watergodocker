@@ -29,3 +29,5 @@ COPY ./docker/service/php-fpm/run /etc/service/php-fpm/run
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
+
+EXPOSE 80

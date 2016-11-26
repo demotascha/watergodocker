@@ -7,10 +7,10 @@ FROM phusion/baseimage:0.9.18
 # install php7
 RUN apt-get update \
 	&& apt-get upgrade -y \
-	&& apt-get install -y software-properties-common git \
+	&& apt-get install -y software-properties-common python-software-properties git \
 	&& LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php \
 	&& apt-get update \
-	&& apt-get install -y php7.0 php7.0-fpm php7.0-cli php7.0-mysql php7.0-mcrypt php7.0-curl php7.0-dev nginx\
+	&& apt-get install -y php7.0 php7.0-fpm php7.0-cli php7.0-mysql php7.0-mcrypt php7.0-curl php7.0-mbstring php7.0-dev php7.0-xml php7.0-json php7.0-zip nginx\
 	&& apt-get --purge autoremove -y \
 	&& apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

@@ -18,6 +18,24 @@ RUN apt-get update \
 RUN ln -sf /dev/stdout /var/log/nginx/access.log \
     && ln -sf /dev/stderr /var/log/nginx/error.log
 
+# install xdebug
+# default host ip of docker-machine
+RUN pecl install -o -f xdebug apcu
+RUN echo "zend_extension=$(find /usr/lib/php/20151012/ -name xdebug.so)" > /etc/php/7.0/mods-available/xdebug.ini \
+    && echo "xdebug.remote_enable=1" >> /etc/php/7.0/mods-available/xdebug.ini \
+    && echo "xdebug.remote_autostart=1" >> /etc/php/7.0/mods-available/xdebug.ini \
+    && echo "xdebug.remote_connect_back=0" >> /etc/php/7.0/mods-available/xdebug.ini \
+    && echo "xdebug.remote_host=10.254.254.254" >> /etc/php/7.0/mods-available/xdebug.ini \
+    && echo "xdebug.remote_port=9000" >> /etc/php/7.0/mods-available/xdebug.ini \
+    && echo "xdebug.idekey=PHPSTORM" >> /etc/php/7.0/mods-available/xdebug.ini \
+    && echo "xdebug.max_nesting_level=512" >> /etc/php/7.0/mods-available/xdebug.ini \
+    && echo "xdebug.remote_log=/var/log/xdebug.log" >> /etc/php/7.0/mods-available/xdebug.ini \
+    && echo "xdebug.profiler_enable=0" >> /etc/php/7.0/mods-available/xdebug.ini \
+    && echo "xdebug.profiler_enable_trigger=1" >> /etc/php/7.0/mods-available/xdebug.ini \
+    && echo "xdebug.coverage_enable=0" >> /etc/php/7.0/mods-available/xdebug.ini \
+    && ln -sf /etc/php/7.0/mods-available/xdebug.ini /etc/php/7.0/fpm/conf.d/20-xdebug.ini \
+    && ln -sf /etc/php/7.0/mods-available/xdebug.ini /etc/php/7.0/cli/conf.d/20-xdebug.ini
+
 # install composer
 RUN cd /root && { curl -sS https://getcomposer.org/installer | /usr/bin/php && /bin/mv -f /root/composer.phar /usr/local/bin/composer; cd -; }
 

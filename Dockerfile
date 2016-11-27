@@ -45,6 +45,13 @@ RUN mkdir /etc/service/nginx \
 COPY ./docker/service/nginx/run /etc/service/nginx/run
 COPY ./docker/service/php-fpm/run /etc/service/php-fpm/run
 
+# ensure dir owned by www-data (wpzoom plugin needs write permissions)
+# @see http://container-solutions.com/understanding-volumes-docker/
+# @see http://stackoverflow.com/a/33615398
+RUN usermod -u 1000 www-data
+RUN mkdir -p $WATERGO
+RUN chown -R :www-data $WATERGO
+
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 

@@ -4,6 +4,10 @@
 # a list of version numbers.
 FROM phusion/baseimage:0.9.18
 
+# app directories
+ENV WATERGO /watergo
+ENV API $WATERGO/api
+
 # install php7
 RUN apt-get update \
 	&& apt-get upgrade -y \

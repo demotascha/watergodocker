@@ -22,8 +22,6 @@ services:
       - VIRTUAL_HOST=watergo.local.tw
       - VIRTUAL_PORT=80
     #env_file:
-      #- raven.env
-      #- blog.env
   mysql:
     container_name: watergo-dev-mysql
     image: mysql:5.6

@@ -13,7 +13,6 @@ services:
       - "80:80"
     volumes:
       - ../watergo/api:/watergo/api
-      - .:/site/app
       - ./docker:/docker
       - ./docker/nginx/sites-enabled:/etc/nginx/sites-enabled
       # - ~/.composer:/root/.composer

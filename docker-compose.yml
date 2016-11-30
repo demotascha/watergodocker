@@ -18,7 +18,7 @@ services:
       # - ~/.composer:/root/.composer
       - ./.zsh_history:/root/.zsh_history
     environment:
-      - VIRTUAL_HOST=watergo.local.tw
+      - VIRTUAL_HOST=www.watergo.local.tw
       - VIRTUAL_PORT=80
     #env_file:
   mysql:

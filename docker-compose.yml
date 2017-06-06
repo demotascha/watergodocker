@@ -23,13 +23,11 @@ services:
     #env_file:
   mysql:
     container_name: watergo-dev-mysql
-    image: mysql:5.6
+    image: mysql:5.7
     environment:
-    - VIRTUAL_HOST=mysql.watergo.local.tw
-    - MYSQL_ROOT_PASSWORD=root
-    - MYSQL_DATABASE=root
-    - MYSQL_USER=docker
-    - MYSQL_PASSWORD=docker
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=water_db_local
+      - MYSQL_ALLOW_EMPTY_PASSWORD=no
     ports:
       - "3306:3306"
     expose:
